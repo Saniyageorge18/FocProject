@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Time To-Do</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      margin: 0;
+      padding: 0;
+      color: #2c3e50;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #6dd5fa;
+      color: white;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      background: #ecf0f1;
+      border-radius: 5px;
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    .quote {
+      margin-top: 30px;
+      font-style: italic;
+      text-align: center;
+      color: #34495e;
+    }
+
+    .add-row, .done-btn {
+      display: inline-block;
+      margin: 20px 10px 0;
+      padding: 10px 20px;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-row:hover, .done-btn:hover {
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Study Time To-Do List</h1>
+    <table id="studyTable">
+      <tr>
+        <th>Sr. No.</th>
+        <th>Goals</th>
+        <th>Duration</th>
+        <th>Remarks</th>
+      </tr>
+    </table>
+    <button class="add-row" onclick="addRow()">Add Task</button>
+    <button class="done-btn" onclick="done()">Done!</button>
+    <p class="quote">“The secret of getting ahead is getting started.” – Mark Twain</p>
+  </div>
+
+  <script>
+    let count = 1;
+
+    function addRow() {
+      const table = document.getElementById('studyTable');
+      const row = table.insertRow();
+
+      const cell1 = row.insertCell(0);
+      const cell2 = row.insertCell(1);
+      const cell3 = row.insertCell(2);
+      const cell4 = row.insertCell(3);
+
+      cell1.textContent = count++;
+      cell2.innerHTML = '<input type="text" placeholder="Enter goal">';
+      cell3.innerHTML = '<input type="text" placeholder="Duration">';
+      cell4.innerHTML = '<input type="text" placeholder="Remarks">';
+    }
+
+    function done() {
+      const inputs = document.querySelectorAll('#studyTable input');
+      inputs.forEach(input => input.setAttribute('disabled', true));
+      alert('Your entries are saved!');
+    }
+  </script>
+</body>
+</html>

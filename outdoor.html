@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outdoor Activities</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://cdn.pixabay.com/photo/2016/11/18/16/19/children-1837375_960_720.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      color: #2c3e50;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    h1 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    th {
+      background-color: #f39c12;
+      color: white;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      background: #ecf0f1;
+      border-radius: 5px;
+    }
+    .quote {
+      margin-top: 30px;
+      font-style: italic;
+      text-align: center;
+      color: #34495e;
+    }
+    .add-row, .done-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .add-row:hover {
+      background-color: #1e8449;
+    }
+    .done-btn {
+      background-color: #e74c3c;
+    }
+    .done-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Outdoor Activity To-Do List</h1>
+    <table id="outdoorTable">
+      <tr>
+        <th>Sr. No.</th>
+        <th>Goals</th>
+        <th>Duration</th>
+        <th>Remarks</th>
+      </tr>
+    </table>
+    <button class="add-row" onclick="addRow()">Add Activity</button>
+    <button class="done-btn" onclick="finalizeList()">Done!</button>
+    <p class="quote">“A healthy outside starts from the inside.” – Robert Urich</p>
+  </div>
+
+  <script>
+    let count = 1;
+    function addRow() {
+      const table = document.getElementById('outdoorTable');
+      const row = table.insertRow();
+
+      const cell1 = row.insertCell(0);
+      const cell2 = row.insertCell(1);
+      const cell3 = row.insertCell(2);
+      const cell4 = row.insertCell(3);
+
+      cell1.textContent = count++;
+      cell2.innerHTML = '<input type="text" placeholder="Enter goal">';
+      cell3.innerHTML = '<input type="text" placeholder="Duration">';
+      cell4.innerHTML = '<input type="text" placeholder="Remarks">';
+    }
+
+    function finalizeList() {
+      const inputs = document.querySelectorAll("input");
+      inputs.forEach(input => input.setAttribute("disabled", "true"));
+      alert("Your outdoor activity list has been finalized!");
+    }
+  </script>
+</body>
+</html>

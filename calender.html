@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Planner - Calendar</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #fdfbfb, #ebedee);
+      color: #2c3e50;
+    }
+    header {
+      background-color: #6dd5fa;
+      padding: 20px;
+      text-align: center;
+      font-size: 2em;
+      color: white;
+      position: relative;
+    }
+    .about-btn {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background-color: white;
+      color: #6dd5fa;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .about-btn:hover {
+      background-color: #4db8e8;
+      color: white;
+    }
+    .calendar {
+      text-align: center;
+      margin: 30px auto;
+    }
+    table {
+      width: 90%;
+      max-width: 600px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+    }
+    th {
+      background-color: #ecf0f1;
+    }
+    td.today {
+      background-color: #2ecc71;
+      color: white;
+      font-weight: bold;
+    }
+    .month-title {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 20px;
+    }
+    .option {
+      width: 250px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 20px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .option:hover {
+      transform: scale(1.05);
+    }
+    .option img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .option h3 {
+      margin-top: 15px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Plan Your Journey
+    <button class="about-btn" onclick="window.location.href='about.html'">About</button>
+  </header>
+
+  <div class="calendar">
+    <div class="month-title" id="monthYear"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+        </tr>
+      </thead>
+      <tbody id="calendarBody"></tbody>
+    </table>
+  </div>
+
+  <div class="options">
+    <div class="option" onclick="location.href='study.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="Study">
+      <h3>Study Time To-Do</h3>
+    </div>
+    <div class="option" onclick="location.href='exam.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/1157/1157109.png" alt="Exam">
+      <h3>Exam Time To-Do</h3>
+    </div>
+    <div class="option" onclick="location.href='outdoor.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/201/201614.png" alt="Outdoor">
+      <h3>Outdoor Activity</h3>
+    </div>
+    <div class="option" onclick="location.href='chores.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/1029/1029183.png" alt="Chores">
+      <h3>Daily Chores</h3>
+    </div>
+  </div>
+
+  <script>
+    const monthYearEl = document.getElementById("monthYear");
+    const calendarBody = document.getElementById("calendarBody");
+
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+    const months = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+
+    monthYearEl.textContent = `${months[month]} ${year}`;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const numDays = new Date(year, month + 1, 0).getDate();
+
+    let date = 1;
+    for (let i = 0; i < 6; i++) {
+      let row = document.createElement("tr");
+
+      for (let j = 0; j < 7; j++) {
+        let cell = document.createElement("td");
+
+        if (i === 0 && j < firstDay) {
+          cell.textContent = "";
+        } else if (date > numDays) {
+          break;
+        } else {
+          cell.textContent = date;
+          if (date === today.getDate()) {
+            cell.classList.add("today");
+          }
+          date++;
+        }
+
+        row.appendChild(cell);
+      }
+
+      calendarBody.appendChild(row);
+      if (date > numDays) break;
+    }
+  </script>
+</body>
+</html>

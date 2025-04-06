@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student To-Do List</title>  <!-- Google Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">  <!-- Font Awesome -->  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #c2e9fb, #a1c4fd);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    nav {
+      width: 100%;
+      background-color: #ffffffcc;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    nav a {
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: bold;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #2ecc71;
+    }
+    h1 {
+      font-size: 3em;
+      color: #2c3e50;
+      margin-top: 80px;
+    }
+    p {
+      font-size: 1.5em;
+      color: #34495e;
+      margin: 20px;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1em;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #27ae60;
+    }
+    img {
+      width: 200px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+      background-color: #ffffffcc;
+      text-align: center;
+      font-size: 0.9em;
+      color: #555;
+    }
+    #quote {
+      font-style: italic;
+      color: #555;
+      margin-top: 30px;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      p { font-size: 1.2em; }
+      button { padding: 10px 20px; }
+    }
+  </style></head>
+<body>
+  <nav>
+    <div><a href="index.html"><i class="fas fa-home"></i> Home</a></div>
+    <div><a href="about.html"><i class="fas fa-user"></i> About</a></div>
+  </nav>  <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Student Icon" />
+  <h1>Welcome to Your Student Planner</h1>
+  <p>"Success doesn't come from what you do occasionally, it comes from what you do consistently."</p>
+  <button onclick="location.href='calender.html'">Let's begin with the change</button>  <div id="quote"></div>  <footer>
+    Made with love by Group 4 | <a href="about.html">About</a>
+  </footer>  <script>
+    const quotes = [
+      "Push yourself, because no one else is going to do it for you.",
+      "Great things never come from comfort zones.",
+      "The secret of getting ahead is getting started."
+    ];
+    let index = 0;
+    setInterval(() => {
+      document.getElementById("quote").textContent = quotes[index];
+      index = (index + 1) % quotes.length;
+    }, 4000);
+  </script></body>
+</html>
